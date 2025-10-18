@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "@tsconfig/strictest/tsconfig.json",
+    "@tsconfig/node-lts/tsconfig.json"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": ["./e2e/*"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": ["e2e"]
+}

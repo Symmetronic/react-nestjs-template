@@ -1,0 +1,28 @@
+{
+  "auth": {
+    "email": "Email",
+    "login": "Log in",
+    "invalidCredentials": "Invalid credentials",
+    "password": "Password",
+    "validation": {
+      "email": {
+        "invalidFormat": "Invalid email format",
+        "tooSmall": "Email must not be empty",
+        "unknown": "Unknown error"
+      },
+      "password": {
+        "tooSmall": "Password must not be empty",
+        "unknown": "Unknown error"
+      }
+    }
+  },
+  "dashboard": {
+    "dashboard": "Dashboard",
+    "welcomeEmail": "Welcome: {{email}}"
+  },
+  "index": {
+    "dashboard": "Dashboard",
+    "login": "Log in",
+    "welcome": "Welcome to the App!"
+  }
+}

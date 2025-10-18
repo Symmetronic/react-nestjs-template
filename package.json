@@ -1,0 +1,35 @@
+{
+  "name": "app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "run-s build:backend build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "dev": "run-p dev:*",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "wait-on http://localhost:3000/health && cd frontend && npm run dev",
+    "format": "run-p format:backend format:frontend",
+    "format:backend": "cd backend && npm run format",
+    "format:frontend": "cd frontend && npm run format",
+    "format:check": "run-s format:check:*",
+    "format:check:backend": "cd backend && npm run format:check",
+    "format:check:frontend": "cd frontend && npm run format:check",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:tests": "cd tests && npm install",
+    "lint": "run-s lint:*",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
+    "postinstall": "run-s install:backend install:frontend install:tests",
+    "prepare": "husky",
+    "test": "cd tests && npm test",
+    "test:ui": "cd tests && npm run test:ui"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.4",
+    "npm-run-all": "^4.1.5",
+    "wait-on": "^9.0.1"
+  }
+}

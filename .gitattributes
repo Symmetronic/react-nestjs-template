@@ -1,0 +1,43 @@
+# Normalize everything by default
+* text=auto
+
+# Force LF for common source files
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.txt text eol=lf
+
+# Lockfiles as text (keep diffs readable)
+package-lock.json text eol=lf
+yarn.lock text eol=lf
+pnpm-lock.yaml text eol=lf
+
+# Mark common binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.pdf binary
+*.zip binary
+
+# Build outputs / vendored directories
+/dist/** linguist-generated=true export-ignore
+/node_modules/** linguist-vendored=true export-ignore
+
+# IDE and OS files to exclude from archives
+.vscode/** export-ignore
+/.idea/** export-ignore
+*.DS_Store export-ignore
+Thumbs.db export-ignore
