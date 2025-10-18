@@ -28,7 +28,7 @@ export default defineConfig({
         rules: [
           {
             from: ["bootstrap"],
-            allow: ["bootstrap", "shared"],
+            allow: ["bootstrap", "module", "shared"],
           },
           {
             from: ["shared"],
@@ -36,7 +36,7 @@ export default defineConfig({
           },
           {
             from: ["module"],
-            allow: ["module", "controller", "service"],
+            allow: ["module", "controller", "guard", "shared", "service"],
           },
           {
             from: ["controller"],
@@ -44,7 +44,6 @@ export default defineConfig({
               "shared",
               "controller",
               "service",
-              "decorator",
               "guard",
               "entity",
               "dto",
@@ -56,14 +55,7 @@ export default defineConfig({
           },
           {
             from: ["service"],
-            allow: [
-              "shared",
-              "service",
-              "dao",
-              "decorator",
-              "database",
-              "entity",
-            ],
+            allow: ["shared", "service", "dao", "database", "entity"],
           },
           {
             from: ["entity"],
@@ -79,11 +71,7 @@ export default defineConfig({
           },
           {
             from: ["guard"],
-            allow: ["shared", "service"],
-          },
-          {
-            from: ["decorator"],
-            allow: ["shared", "decorator"],
+            allow: ["shared", "service", "controller", "dto"],
           },
         ],
       },
@@ -91,7 +79,18 @@ export default defineConfig({
   },
   settings: {
     "boundaries/include": ["src/**"],
+    "import/resolver": {
+      alias: {
+        map: [["@", "./src"]],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+      },
+    },
     "boundaries/elements": [
+      {
+        mode: "full",
+        type: "module",
+        pattern: ["src/**/*.module.ts"],
+      },
       {
         mode: "full",
         type: "bootstrap",
@@ -100,12 +99,12 @@ export default defineConfig({
       {
         mode: "full",
         type: "shared",
-        pattern: ["src/types/**/*", "src/utils/**/*"],
-      },
-      {
-        mode: "full",
-        type: "module",
-        pattern: ["src/**/*.module.ts"],
+        pattern: [
+          "src/constants/**/*",
+          "src/decorators/**/*",
+          "src/types/**/*",
+          "src/utils/**/*",
+        ],
       },
       {
         mode: "full",
@@ -141,11 +140,6 @@ export default defineConfig({
         mode: "full",
         type: "guard",
         pattern: ["src/**/*.guard.ts"],
-      },
-      {
-        mode: "full",
-        type: "decorator",
-        pattern: ["src/**/*.decorator.ts"],
       },
     ],
   },

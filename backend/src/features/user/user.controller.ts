@@ -1,4 +1,4 @@
-import { CurrentUser } from "@/features/auth/decorators/current-user.decorator";
+import { CurrentUser } from "@/decorators/current-user.decorator";
 import { AuthGuard } from "@/features/auth/guards/auth.guard";
 import { CreateUserDto } from "@/features/user/dtos/create-user.dto";
 import { UserDto } from "@/features/user/dtos/user.dto";

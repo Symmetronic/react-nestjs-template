@@ -19,7 +19,6 @@ export class AuthGuard implements CanActivate {
         user: UserDto | undefined;
       }
     >();
-
     const userId = request.cookies?.["token"];
 
     if (!userId) {
