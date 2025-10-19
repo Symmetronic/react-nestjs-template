@@ -1,0 +1,13 @@
+name: Audit
+on:
+  schedule:
+    - cron: "0 9 * * *"
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+      - run: npm audit --omit=dev
