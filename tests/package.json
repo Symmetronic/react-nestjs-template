@@ -2,6 +2,16 @@
   "name": "app-tests",
   "private": true,
   "type": "module",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "npm",
+      "onFail": "error"
+    }
+  },
   "scripts": {
     "postinstall": "playwright install",
     "test": "playwright test",

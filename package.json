@@ -2,6 +2,16 @@
   "name": "app",
   "private": true,
   "type": "module",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "npm",
+      "onFail": "error"
+    }
+  },
   "scripts": {
     "build": "run-s build:backend build:frontend",
     "build:backend": "cd backend && npm run build",

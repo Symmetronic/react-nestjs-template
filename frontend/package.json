@@ -3,6 +3,16 @@
   "private": true,
   "type": "module",
   "version": "0.0.0",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "npm",
+      "onFail": "error"
+    }
+  },
   "scripts": {
     "prebuild": "npm run generate:api",
     "build": "vite build",
