@@ -8,7 +8,7 @@ export class IndexPage {
   private readonly pageUrl: PageUrl;
   private readonly url = urls.index;
 
-  private readonly loginLink: Locator;
+  readonly loginLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
