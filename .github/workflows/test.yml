@@ -5,6 +5,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      HOME: /root
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
