@@ -36,6 +36,7 @@
     "postinstall": "run-s install:backend install:frontend install:tests",
     "prepare": "husky",
     "test": "cd tests && npm test",
+    "test:chromium": "cd tests && npm run test:chromium",
     "test:ui": "cd tests && npm run test:ui"
   },
   "devDependencies": {
