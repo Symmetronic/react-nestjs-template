@@ -1,5 +1,7 @@
-import { Container, Link, Stack, Typography } from "@mui/material";
-import { Link as RouterLink } from "@tanstack/react-router";
+import { Container } from "@/components/Container";
+import { H1 } from "@/components/H1";
+import { Link } from "@/components/Link";
+import { Stack } from "@/components/Stack";
 import { useTranslation } from "react-i18next";
 
 export function IndexView() {
@@ -8,12 +10,8 @@ export function IndexView() {
   return (
     <Container>
       <Stack spacing={1}>
-        <Typography component="h1" variant="h4">
-          {t("welcome")}
-        </Typography>
-        <Link component={RouterLink} to="/login" variant="button">
-          {t("login")}
-        </Link>
+        <H1>{t("welcome")}</H1>
+        <Link to="/login">{t("login")}</Link>
       </Stack>
     </Container>
   );
