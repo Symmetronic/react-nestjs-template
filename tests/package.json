@@ -15,7 +15,7 @@
   "scripts": {
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "postinstall": "playwright install --with-deps",
+    "install:browsers": "playwright install --with-deps",
     "test": "playwright test",
     "test:ui": "playwright test --ui"
   },
