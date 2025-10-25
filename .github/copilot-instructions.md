@@ -52,11 +52,12 @@ Controller → Service → Database → DAO → Entity
 
 **Key rules**:
 
-- DTOs can import entities and other DTOs
+- DTOs can import entities and other DTOs (use class-validator decorators)
 - Services use Result pattern, never throw errors
 - Controllers unwrap Results and throw NestJS exceptions
-- DAOs transform between database and entities via `toEntity()`
+- DAOs transform between database and entities via `toEntity()` method
 - Guards can access services and DTOs (see `auth.guard.ts`)
+- Database layer returns DAOs, services convert to entities using `toEntity()`
 
 ### Authentication Pattern
 
@@ -91,7 +92,11 @@ Generated clients in `src/api/generated/` and types in `src/types/generated/`:
 cd frontend && npm run generate:api
 ```
 
-Auto-runs on `npm install` via `prepare` script. Generates React Query hooks from OpenAPI spec.
+Auto-runs on `npm install` via `prepare` script. Generates:
+
+- React Query hooks (axios-based) for API calls
+- TypeScript types from OpenAPI schemas
+- Zod schemas for validation (`.zod.ts` files)
 
 ### Authentication Flow
 
@@ -99,6 +104,24 @@ Auto-runs on `npm install` via `prepare` script. Generates React Query hooks fro
 2. Protected routes use `_authenticated` layout
 3. Login redirects via `search.redirect` parameter
 4. API calls include credentials automatically (cookies)
+
+### UI & Form Validation
+
+- **Material-UI (MUI)** for component library
+- **react-hook-form** for form management
+- **Zod + zodResolver** for form validation (using Orval-generated schemas)
+
+Example pattern (see `LoginView.tsx`):
+
+```typescript
+import { postLoginBody } from "@/api/generated/auth/auth.zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
+const { handleSubmit, register } = useForm<LoginRequestDto>({
+  resolver: zodResolver(postLoginBody),
+});
+```
 
 ### i18n Setup
 
@@ -181,6 +204,25 @@ Husky + lint-staged configured (currently no-op in root `lint-staged.config.mjs`
 
 ## Common Patterns
 
+### Developing New Features (User Story-Driven)
+
+**All new fullstack features and tests are developed based on user stories** in `docs/user-stories/`. Each story follows the format:
+
+- **User Story**: AS a [role] I WANT TO [action] SO THAT [benefit]
+- **Acceptance Criteria**: Gherkin-style GIVEN-WHEN-THEN scenarios
+- **Data Models**: TypeScript interfaces for entities
+
+**Development workflow**:
+
+1. Start with user story in `docs/user-stories/{number}-{feature}.md`
+2. Implement backend feature (controller, service, DTOs following Result pattern)
+3. Backend auto-generates OpenAPI → frontend regenerates API clients
+4. Implement frontend (routes, components, forms with MUI + react-hook-form)
+5. Create E2E tests mirroring acceptance criteria with test.step() structure
+6. Test file naming: `tests/e2e/tests/{number}-{feature}.spec.ts` matches user story file
+
+See `0-login.md` and `0-login.spec.ts` for the complete pattern.
+
 ### Adding a New Backend Feature
 
 1. Create `src/features/{name}/{name}.module.ts`
@@ -198,4 +240,5 @@ Husky + lint-staged configured (currently no-op in root `lint-staged.config.mjs`
 
 1. Create page object in `tests/e2e/pages/{page}.page.ts`
 2. Add to fixtures in `tests/e2e/fixtures.ts`
-3. Write tests using fixtures pattern (see `auth/login.spec.ts`)
+3. Write tests using Gherkin-style test.step() for each GIVEN-WHEN-THEN
+4. Match acceptance criteria from user story exactly
