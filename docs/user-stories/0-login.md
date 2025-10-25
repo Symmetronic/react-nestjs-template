@@ -10,10 +10,10 @@ SO THAT I can access my private data
   WHEN the user clicks on the login link
   THEN the login page is visible
 - GIVEN a user is on the login page
-  WHEN the user login is successfull
+  WHEN the user login is successful
   THEN the user is redirected to the dashboard page
 - GIVEN a user is on the login page
-  WHEN the user login is not successfull
+  WHEN the user login is not successful
   THEN an error message is shown
 - GIVEN a user is not authenticated
   WHEN the user navigates to a protected page
