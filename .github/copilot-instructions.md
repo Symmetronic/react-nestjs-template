@@ -108,6 +108,7 @@ Auto-runs on `npm install` via `prepare` script. Generates:
 ### UI & Form Validation
 
 - **Material-UI (MUI)** for component library
+- **Component Encapsulation**: All UI library components (MUI) are wrapped in custom components in `src/components/` before use in features. Never import MUI components directly in feature code—always use the encapsulated versions (e.g., `Button`, `TextField`, `Stack`). This provides a consistent API and allows for project-wide customization.
 - **react-hook-form** for form management
 - **Zod + zodResolver** for form validation (using Orval-generated schemas)
 

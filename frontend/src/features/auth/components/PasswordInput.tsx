@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField } from "@/components/TextField";
 import type { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -22,9 +22,7 @@ export function PasswordInput({ error, ...register }: PasswordInputProps) {
   return (
     <TextField
       {...register}
-      error={!!error}
-      fullWidth
-      helperText={helperText(error)}
+      error={helperText(error)}
       label={t("password")}
       type="password"
     />

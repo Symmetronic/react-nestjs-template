@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField } from "@/components/TextField";
 import type { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -22,12 +22,6 @@ export function EmailInput({ error, ...register }: EmailInputProps) {
   };
 
   return (
-    <TextField
-      {...register}
-      error={!!error}
-      fullWidth
-      helperText={helperText(error)}
-      label={t("email")}
-    />
+    <TextField {...register} error={helperText(error)} label={t("email")} />
   );
 }
